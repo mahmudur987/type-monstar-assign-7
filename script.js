@@ -39,19 +39,22 @@ const typeController = (e) => {
   }
 
   userText += newLetter;
-
   const newLetterCorrect = validate(newLetter);
 
   if (newLetterCorrect) {
     display.innerHTML += `<span class="green">${newLetter === " " ? "▪" : newLetter}</span>`;
   } else {
     display.innerHTML += `<span class="red">${newLetter === " " ? "▪" : newLetter}</span>`;
+    errorCount = errorCount + 1
   }
 
   // check if given question text is equal to user typed text
+  console.log(userText);
+  console.log(questionText)
   if (questionText === userText) {
     gameOver();
   }
+
 };
 
 const validate = (key) => {
@@ -64,11 +67,14 @@ const validate = (key) => {
 // FINISHED TYPING
 const gameOver = () => {
   document.removeEventListener("keydown", typeController);
+
   // the current time is the finish time
   // so total time taken is current time - start time
   const finishTime = new Date().getTime();
   const timeTaken = (finishTime - startTime) / 1000;
-
+  console.log(finishTime);
+  console.log(timeTaken)
+  console.log(errorCount)
   // show result modal
   resultModal.innerHTML = "";
   resultModal.classList.toggle("hidden");
@@ -107,24 +113,29 @@ const start = () => {
   countdownOverlay.style.display = "flex";
 
   const startCountdown = setInterval(() => {
-    countdownOverlay.innerHTML = '<h1>${count}</h1>';
+    countdownOverlay.innerHTML = `<h1>${count}</h1>`;
 
     // finished timer
-    if (count == 0) {
+    if (count == -1) {
       // -------------- START TYPING -----------------
       document.addEventListener("keydown", typeController);
-      countdownOverlay.style.display = "flex";
+      countdownOverlay.style.display = "none";
       display.classList.remove("inactive");
 
       clearInterval(startCountdown);
       startTime = new Date().getTime();
     }
+
     count--;
   }, 1000);
 };
 
 // START Countdown
-startBtn.addEventListener("click", start);
+document.getElementById('starts').addEventListener("click", function () {
+  start();
+  // gameOver();
+  // console.log(55)
+});
 
 // If history exists, show it
 displayHistory();
@@ -133,7 +144,7 @@ displayHistory();
 setInterval(() => {
   const currentTime = new Date().getTime();
   const timeSpent = (currentTime - startTime) / 1000;
-
-
-  document.getElementById("show-time").innerHTML = `${startTime ? timeSpent : 0} seconds`;
+  const normalTime = timeSpent.toFixed(0)
+  // console.log(normalTime);
+  document.getElementById("show-time").innerHTML = `${startTime ? normalTime : 0} seconds`;
 }, 1000);
