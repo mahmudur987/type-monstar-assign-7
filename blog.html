@@ -34,12 +34,22 @@
     <section class="container">
 
         <article class="mt-5 mb-5">
-            <h3 class="text-bg-info w-auto fw-bolder">
+            <h3 class="bg-warning w-auto fw-bolder">
                 Question-1 : what is the different between localStorage and sesson storage?
             </h3>
             <span class="d-block fs-4 fw-bolder text-light w-25 text-center text-bg-secondary">Answer</span>
             <textarea class="w-100 fw-bold" name="" id="" cols="80" rows="10">
                 sessionStorage is similar to localStorage ; the difference is that while data in localStorage doesn't expire, data in sessionStorage is cleared when the page session ends. Whenever a document is loaded in a particular tab in the browser, a unique page session gets created and assigned to that particular tab.
+
+                1.Whenever a document is loaded in a particular tab in the browser, a unique page session gets created and assigned to that particular tab. That page session is valid only for that particular tab.
+                2.A page session lasts as long as the tab or the browser is open, and survives over page reloads and restores.
+                3.Opening a page in a new tab or window creates a new session with the value of the top-level browsing context, which differs from how session cookies work.
+                4. Opening multiple tabs/windows with the same URL creates sessionStorage for each tab/window.
+                5.Duplicating a tab copies the tab's sessionStorage into the new tab.
+                6.Closing a tab/window ends the session and clears objects in sessionStorage.
+
+
+
               </textarea>
         </article>
 
@@ -80,7 +90,7 @@
                 JavaScript has a runtime model based on an event loop, which is responsible for executing the code, collecting and processing events, and executing queued sub-tasks. This model is quite different from models in other languages like C and Java.
 
                 Runtime concepts
-                The following sections explain a theoretical model. Modern JavaScript engines implement and heavily optimize the described semantics.
+                The following sections explain a theoretical model. Modern JavaScript engines implement and heavily optimize the           described semantics.
 
                 JavaScript is a single-threaded synchronous programming language. But what does it actually mean? What is this event loop in JavaScript that we all keep talking about? 
 
