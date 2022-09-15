@@ -72,9 +72,9 @@ const gameOver = () => {
   // so total time taken is current time - start time
   const finishTime = new Date().getTime();
   const timeTaken = (finishTime - startTime) / 1000;
-  console.log(finishTime);
-  console.log(timeTaken)
-  console.log(errorCount)
+  // console.log(finishTime);
+  // console.log(timeTaken)
+  // console.log(errorCount)
   // show result modal
   resultModal.innerHTML = "";
   resultModal.classList.toggle("hidden");
